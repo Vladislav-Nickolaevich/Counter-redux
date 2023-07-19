@@ -1,13 +1,15 @@
 import React from 'react';
-import './App.css';
-import {CounterWrapper} from "./fiches/CounterWrapper";
+import './App.module.css';
+import style from './App.module.css'
+import  {CounterWrapper} from "./fiches/CounterWrapper";
+
 
 function App() {
-  return (
-    <div >
-      <CounterWrapper/>
-    </div>
-  );
+    return (
+        <div className={style.counterStyle}>
+            <CounterWrapper/>
+        </div>
+    );
 }
 
 export default App;

@@ -1,0 +1,7 @@
+.counterStyle {
+    margin: 0 auto;
+    border: 2px solid blue;
+    width: 200px;
+    height: 180px;
+    border-radius: 5px;
+}
