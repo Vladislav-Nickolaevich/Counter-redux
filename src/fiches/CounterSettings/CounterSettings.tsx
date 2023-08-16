@@ -1,14 +1,17 @@
 import React, {useState} from 'react';
 import {Input} from "../../components/Input";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {Button} from "../../components/Button";
-import {showCounterSettingsAC, setMinAndMaxValuesAC} from "../../state/counter-reducer";
+import {
+    setMinAndMaxValuesLocalStorageTC, showCounterSettingsAC
+} from "../../state/counter-reducer";
 import style from './CounterSettings.module.css'
 import {maxValueSelector, minValueSelector} from "../../state/selectors";
+import {useAppDispatch} from "../../state/store";
 
 
 export const CounterSettings = () => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const minValue = useSelector(minValueSelector)
     const maxValue = useSelector(maxValueSelector)
 
@@ -16,7 +19,7 @@ export const CounterSettings = () => {
     const [max, setMax] = useState<number>(maxValue)
 
     const setOnClick = () => {
-        dispatch(setMinAndMaxValuesAC(min, max))
+        dispatch(setMinAndMaxValuesLocalStorageTC(min, max))
         dispatch(showCounterSettingsAC())
     }
 
@@ -24,6 +27,7 @@ export const CounterSettings = () => {
     const onChangeMinHandler = (e:number) => setMin(e)
 
     const isDisabledSet = min >= max
+
 
     return (
         <div>

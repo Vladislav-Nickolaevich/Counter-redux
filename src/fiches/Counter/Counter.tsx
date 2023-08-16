@@ -1,12 +1,17 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import style from "./Counter.module.css";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {Button} from "../../components/Button";
-import {showCounterSettingsAC, incBtnAC, resetBtnAC} from "../../state/counter-reducer";
+import {
+    showCounterSettingsAC,
+    incBtnAC,
+    resetBtnAC,
+    getMinAndMaxValuesLocalStorageTC} from "../../state/counter-reducer";
 import {currentValueSelector, maxValueSelector, minValueSelector} from "../../state/selectors";
+import {useAppDispatch} from "../../state/store";
 
 export const Counter = () => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const currentValue = useSelector(currentValueSelector)
     const maxValue = useSelector(maxValueSelector)
     const minValue = useSelector(minValueSelector)
@@ -23,6 +28,12 @@ export const Counter = () => {
 
     const isDisabledInc = currentValue === maxValue
     const isDisabledRest = currentValue === minValue
+
+
+
+    useEffect(() => {
+        dispatch(getMinAndMaxValuesLocalStorageTC())
+    }, [])
 
     return (
         <div>
